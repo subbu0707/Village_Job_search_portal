@@ -1,0 +1,38 @@
+.star-rating {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.star {
+  transition: all 0.2s ease;
+}
+
+.star-small {
+  font-size: 16px;
+}
+
+.star-medium {
+  font-size: 24px;
+}
+
+.star-large {
+  font-size: 36px;
+}
+
+.star.filled {
+  color: #ffc107;
+  text-shadow: 0 0 2px rgba(255, 193, 7, 0.5);
+}
+
+.star.empty {
+  color: #ddd;
+}
+
+.star-rating.interactive .star:hover {
+  transform: scale(1.1);
+}
+
+.star-rating.read-only .star {
+  cursor: default;
+}
