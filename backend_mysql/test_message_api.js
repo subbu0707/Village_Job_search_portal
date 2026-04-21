@@ -10,7 +10,7 @@ async function testMessageAPI() {
     const testEmail = "testuser" + Date.now() + "@test.com";
 
     const registerResponse = await axios.post(
-      "https://village-job-search-portal.onrender.com/api/auth/register",
+      "http://localhost:4000/api/auth/register",
       {
         email: testEmail,
         password: "password123",
@@ -36,7 +36,7 @@ async function testMessageAPI() {
     // Now test sending a message (to user ID 2)
     console.log("\n2. Testing message send...");
     const messageResponse = await axios.post(
-      "https://village-job-search-portal.onrender.com/api/messages",
+      "http://localhost:4000/api/messages",
       {
         receiverId: 2, // Send to existing user
         message: "Test message from API test",
@@ -61,7 +61,7 @@ async function testMessageAPI() {
     // Test getting conversation
     console.log("\n3. Testing conversation retrieval...");
     const conversationResponse = await axios.get(
-      `https://village-job-search-portal.onrender.com/api/messages/2`,
+      `http://localhost:4000/api/messages/2`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

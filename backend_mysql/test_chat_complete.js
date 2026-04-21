@@ -19,7 +19,7 @@ async function testChatFunctionality() {
     };
 
     const registerRes = await axios.post(
-      "https://village-job-search-portal.onrender.com/api/auth/register",
+      "http://localhost:4000/api/auth/register",
       testUser,
     );
 
@@ -35,7 +35,7 @@ async function testChatFunctionality() {
     // Step 2: Test sending a message
     console.log("\n2. Testing message send...");
     const sendRes = await axios.post(
-      "https://village-job-search-portal.onrender.com/api/messages",
+      "http://localhost:4000/api/messages",
       {
         receiverId: 2, // Send to existing user
         message: "Hello from chat test!",
@@ -56,12 +56,9 @@ async function testChatFunctionality() {
 
     // Step 3: Test getting conversation
     console.log("\n3. Testing conversation retrieval...");
-    const convRes = await axios.get(
-      "https://village-job-search-portal.onrender.com/api/messages/2",
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      },
-    );
+    const convRes = await axios.get("http://localhost:4000/api/messages/2", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
     if (convRes.data.success) {
       console.log("✅ Conversation retrieved successfully");

@@ -2,7 +2,7 @@
 require("dotenv").config();
 const axios = require("axios");
 
-const API_BASE = "https://village-job-search-portal.onrender.com/api";
+const API_BASE = "http://localhost:4000/api";
 
 async function testJobsAPI() {
   console.log("\n🧪 Testing Jobs API\n");

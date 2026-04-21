@@ -8,13 +8,10 @@ async function simpleMessageTest() {
     // Test just the endpoint structure first
     console.log("Testing message endpoint without auth (should get 401)...");
     try {
-      await axios.post(
-        "https://village-job-search-portal.onrender.com/api/messages",
-        {
-          receiverId: 1,
-          message: "test",
-        },
-      );
+      await axios.post("http://localhost:4000/api/messages", {
+        receiverId: 1,
+        message: "test",
+      });
     } catch (error) {
       if (error.response?.status === 401) {
         console.log("✅ Endpoint exists and requires auth (401 Unauthorized)");
@@ -31,7 +28,7 @@ async function simpleMessageTest() {
     console.log("\nTesting with invalid token (should get 401)...");
     try {
       await axios.post(
-        "https://village-job-search-portal.onrender.com/api/messages",
+        "http://localhost:4000/api/messages",
         {
           receiverId: 1,
           message: "test",
