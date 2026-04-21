@@ -973,7 +973,7 @@ const EmployerDashboard = () => {
                               applicant,
                             )
                           }
-                          style={styles.completeBtn}
+                          style={styles.markCompletedBtn}
                         >
                           ✅ {t("Mark Completed")}
                         </button>
@@ -1166,7 +1166,7 @@ const EmployerDashboard = () => {
                             application,
                           )
                         }
-                        style={styles.completeBtn}
+                        style={styles.markCompletedBtn}
                       >
                         ✅ Mark Completed
                       </button>
@@ -1683,7 +1683,7 @@ const styles = {
     cursor: "pointer",
     fontSize: "12px",
   },
-  completeBtn: {
+  markCompletedBtn: {
     backgroundColor: "#10B981",
     color: "white",
     border: "none",
