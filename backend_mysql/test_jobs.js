@@ -2,7 +2,7 @@
 require("dotenv").config();
 const axios = require("axios");
 
-const API_BASE = "http://localhost:4000/api";
+const API_BASE = "https://village-job-search-portal.onrender.com/api";
 
 async function testJobsAPI() {
   console.log("\n🧪 Testing Jobs API\n");
@@ -23,7 +23,7 @@ async function testJobsAPI() {
 
     const tnJobsResponse = await axios.get(`${API_BASE}/jobs?state=Tamil Nadu`);
     console.log(
-      `✅ Found ${tnJobsResponse.data.data.length} jobs in Tamil Nadu`
+      `✅ Found ${tnJobsResponse.data.data.length} jobs in Tamil Nadu`,
     );
 
     if (tnJobsResponse.data.data.length > 0) {
@@ -31,7 +31,7 @@ async function testJobsAPI() {
       tnJobsResponse.data.data.slice(0, 3).forEach((job, index) => {
         console.log(`   ${index + 1}. ${job.title} in ${job.city}`);
         console.log(
-          `      Salary: ₹${job.salary_min} - ₹${job.salary_max}/${job.salary_type}`
+          `      Salary: ₹${job.salary_min} - ₹${job.salary_max}/${job.salary_type}`,
         );
         console.log(`      Type: ${job.job_type}`);
       });
@@ -42,10 +42,10 @@ async function testJobsAPI() {
     console.log("-".repeat(60));
 
     const chennaiJobsResponse = await axios.get(
-      `${API_BASE}/jobs?city=Chennai`
+      `${API_BASE}/jobs?city=Chennai`,
     );
     console.log(
-      `✅ Found ${chennaiJobsResponse.data.data.length} jobs in Chennai`
+      `✅ Found ${chennaiJobsResponse.data.data.length} jobs in Chennai`,
     );
 
     // Test 4: Get jobs by job type
@@ -53,10 +53,10 @@ async function testJobsAPI() {
     console.log("-".repeat(60));
 
     const dailyWageResponse = await axios.get(
-      `${API_BASE}/jobs?jobType=daily-wage`
+      `${API_BASE}/jobs?jobType=daily-wage`,
     );
     console.log(
-      `✅ Found ${dailyWageResponse.data.data.length} daily-wage jobs`
+      `✅ Found ${dailyWageResponse.data.data.length} daily-wage jobs`,
     );
 
     if (dailyWageResponse.data.data.length > 0) {
@@ -65,7 +65,7 @@ async function testJobsAPI() {
         console.log(
           `   ${index + 1}. ${job.title} - ₹${job.salary_min}-${
             job.salary_max
-          }/${job.salary_type}`
+          }/${job.salary_type}`,
         );
       });
     }
@@ -75,10 +75,10 @@ async function testJobsAPI() {
     console.log("-".repeat(60));
 
     const constructionResponse = await axios.get(
-      `${API_BASE}/jobs?category=Construction`
+      `${API_BASE}/jobs?category=Construction`,
     );
     console.log(
-      `✅ Found ${constructionResponse.data.data.length} construction jobs`
+      `✅ Found ${constructionResponse.data.data.length} construction jobs`,
     );
 
     // Test 6: Search jobs by title
@@ -103,7 +103,7 @@ async function testJobsAPI() {
     console.log(`   Chennai: ${chennaiJobsResponse.data.data.length} jobs`);
     console.log(`   Daily Wage: ${dailyWageResponse.data.data.length} jobs`);
     console.log(
-      `   Construction: ${constructionResponse.data.data.length} jobs`
+      `   Construction: ${constructionResponse.data.data.length} jobs`,
     );
     console.log("\n✅ Users can now search and find jobs by:");
     console.log("   ✅ Location (State & City)");

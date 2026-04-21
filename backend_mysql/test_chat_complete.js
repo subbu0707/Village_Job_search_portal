@@ -19,8 +19,8 @@ async function testChatFunctionality() {
     };
 
     const registerRes = await axios.post(
-      "http://localhost:4000/api/auth/register",
-      testUser
+      "https://village-job-search-portal.onrender.com/api/auth/register",
+      testUser,
     );
 
     if (!registerRes.data.success) {
@@ -35,7 +35,7 @@ async function testChatFunctionality() {
     // Step 2: Test sending a message
     console.log("\n2. Testing message send...");
     const sendRes = await axios.post(
-      "http://localhost:4000/api/messages",
+      "https://village-job-search-portal.onrender.com/api/messages",
       {
         receiverId: 2, // Send to existing user
         message: "Hello from chat test!",
@@ -43,7 +43,7 @@ async function testChatFunctionality() {
       },
       {
         headers: { Authorization: `Bearer ${token}` },
-      }
+      },
     );
 
     if (sendRes.data.success) {
@@ -56,16 +56,19 @@ async function testChatFunctionality() {
 
     // Step 3: Test getting conversation
     console.log("\n3. Testing conversation retrieval...");
-    const convRes = await axios.get("http://localhost:4000/api/messages/2", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const convRes = await axios.get(
+      "https://village-job-search-portal.onrender.com/api/messages/2",
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
 
     if (convRes.data.success) {
       console.log("✅ Conversation retrieved successfully");
       console.log("   Messages count:", convRes.data.data.length);
       console.log(
         "   Latest message:",
-        convRes.data.data[convRes.data.data.length - 1]?.message
+        convRes.data.data[convRes.data.data.length - 1]?.message,
       );
     } else {
       console.log("❌ Conversation retrieval failed:", convRes.data.message);
@@ -86,7 +89,7 @@ async function testChatFunctionality() {
 
     if (error.response?.status === 401) {
       console.log(
-        "\n💡 This is expected if testing auth - chat requires login!"
+        "\n💡 This is expected if testing auth - chat requires login!",
       );
     }
   }

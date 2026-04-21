@@ -8,7 +8,10 @@ async function debugChat() {
     // Test 1: Check message endpoint exists
     console.log("1. Testing message endpoint (should get 401)...");
     try {
-      await axios.post("http://localhost:4000/api/messages", { test: "data" });
+      await axios.post(
+        "https://village-job-search-portal.onrender.com/api/messages",
+        { test: "data" },
+      );
     } catch (error) {
       if (error.response?.status === 401) {
         console.log("✅ Message endpoint exists and requires auth");
@@ -32,12 +35,12 @@ async function debugChat() {
       for (const password of commonPasswords) {
         try {
           const loginRes = await axios.post(
-            "http://localhost:4000/api/auth/login",
+            "https://village-job-search-portal.onrender.com/api/auth/login",
             {
               email: email,
               password: password,
               termsAccepted: true,
-            }
+            },
           );
 
           if (loginRes.data.success) {
@@ -66,7 +69,7 @@ async function debugChat() {
     console.log("\n4. Testing message send with valid token...");
     try {
       const msgRes = await axios.post(
-        "http://localhost:4000/api/messages",
+        "https://village-job-search-portal.onrender.com/api/messages",
         {
           receiverId: validUserId === 1 ? 2 : 1,
           message: "Test message from debug script",
@@ -74,7 +77,7 @@ async function debugChat() {
         },
         {
           headers: { Authorization: `Bearer ${validToken}` },
-        }
+        },
       );
 
       if (msgRes.data.success) {
@@ -89,10 +92,10 @@ async function debugChat() {
     console.log("\n5. Testing conversation retrieval...");
     try {
       const convRes = await axios.get(
-        `http://localhost:4000/api/messages/${validUserId === 1 ? 2 : 1}`,
+        `https://village-job-search-portal.onrender.com/api/messages/${validUserId === 1 ? 2 : 1}`,
         {
           headers: { Authorization: `Bearer ${validToken}` },
-        }
+        },
       );
 
       if (convRes.data.success) {

@@ -10,7 +10,7 @@ async function testMessageAPI() {
     const testEmail = "testuser" + Date.now() + "@test.com";
 
     const registerResponse = await axios.post(
-      "http://localhost:4000/api/auth/register",
+      "https://village-job-search-portal.onrender.com/api/auth/register",
       {
         email: testEmail,
         password: "password123",
@@ -21,7 +21,7 @@ async function testMessageAPI() {
         state: "Test State",
         city: "Test City",
         termsAccepted: true,
-      }
+      },
     );
 
     if (!registerResponse.data.success) {
@@ -36,7 +36,7 @@ async function testMessageAPI() {
     // Now test sending a message (to user ID 2)
     console.log("\n2. Testing message send...");
     const messageResponse = await axios.post(
-      "http://localhost:4000/api/messages",
+      "https://village-job-search-portal.onrender.com/api/messages",
       {
         receiverId: 2, // Send to existing user
         message: "Test message from API test",
@@ -47,7 +47,7 @@ async function testMessageAPI() {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
 
     if (messageResponse.data.success) {
@@ -61,12 +61,12 @@ async function testMessageAPI() {
     // Test getting conversation
     console.log("\n3. Testing conversation retrieval...");
     const conversationResponse = await axios.get(
-      `http://localhost:4000/api/messages/2`,
+      `https://village-job-search-portal.onrender.com/api/messages/2`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
 
     if (conversationResponse.data.success) {
@@ -78,7 +78,7 @@ async function testMessageAPI() {
     } else {
       console.log(
         "❌ Conversation retrieval failed:",
-        conversationResponse.data.message
+        conversationResponse.data.message,
       );
     }
 
@@ -92,7 +92,7 @@ async function testMessageAPI() {
     if (error.response?.data) {
       console.log(
         "   Full Response:",
-        JSON.stringify(error.response.data, null, 2)
+        JSON.stringify(error.response.data, null, 2),
       );
     }
   }

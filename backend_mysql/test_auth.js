@@ -2,7 +2,7 @@
 require("dotenv").config();
 const axios = require("axios");
 
-const API_BASE = "http://localhost:4000/api";
+const API_BASE = "https://village-job-search-portal.onrender.com/api";
 
 async function testAuthFlow() {
   console.log("\n🧪 Testing Authentication Flow\n");
@@ -29,7 +29,7 @@ async function testAuthFlow() {
 
     const registerResponse = await axios.post(
       `${API_BASE}/auth/register`,
-      testUser
+      testUser,
     );
 
     if (registerResponse.data.success) {
@@ -37,7 +37,7 @@ async function testAuthFlow() {
       console.log("   User ID:", registerResponse.data.data.id);
       console.log(
         "   Token received:",
-        registerResponse.data.data.token ? "Yes" : "No"
+        registerResponse.data.data.token ? "Yes" : "No",
       );
     }
 
@@ -61,7 +61,7 @@ async function testAuthFlow() {
       console.log("   Role:", loginResponse.data.data.role);
       console.log(
         "   Token received:",
-        loginResponse.data.data.token ? "Yes" : "No"
+        loginResponse.data.data.token ? "Yes" : "No",
       );
     }
 
@@ -99,7 +99,7 @@ async function testAuthFlow() {
       } else {
         console.log(
           "⚠️  Unexpected error:",
-          error.response?.data?.message || error.message
+          error.response?.data?.message || error.message,
         );
       }
     }
@@ -123,7 +123,7 @@ async function testAuthFlow() {
       } else {
         console.log(
           "⚠️  Unexpected error:",
-          error.response?.data?.message || error.message
+          error.response?.data?.message || error.message,
         );
       }
     }
