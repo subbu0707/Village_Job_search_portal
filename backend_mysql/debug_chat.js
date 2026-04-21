@@ -8,10 +8,7 @@ async function debugChat() {
     // Test 1: Check message endpoint exists
     console.log("1. Testing message endpoint (should get 401)...");
     try {
-      await axios.post(
-        "https://village-job-search-portal.onrender.com/api/messages",
-        { test: "data" },
-      );
+      await axios.post("http://localhost:4000/api/messages", { test: "data" });
     } catch (error) {
       if (error.response?.status === 401) {
         console.log("✅ Message endpoint exists and requires auth");
@@ -35,7 +32,7 @@ async function debugChat() {
       for (const password of commonPasswords) {
         try {
           const loginRes = await axios.post(
-            "https://village-job-search-portal.onrender.com/api/auth/login",
+            "http://localhost:4000/api/auth/login",
             {
               email: email,
               password: password,
@@ -69,7 +66,7 @@ async function debugChat() {
     console.log("\n4. Testing message send with valid token...");
     try {
       const msgRes = await axios.post(
-        "https://village-job-search-portal.onrender.com/api/messages",
+        "http://localhost:4000/api/messages",
         {
           receiverId: validUserId === 1 ? 2 : 1,
           message: "Test message from debug script",
@@ -92,7 +89,7 @@ async function debugChat() {
     console.log("\n5. Testing conversation retrieval...");
     try {
       const convRes = await axios.get(
-        `https://village-job-search-portal.onrender.com/api/messages/${validUserId === 1 ? 2 : 1}`,
+        `http://localhost:4000/api/messages/${validUserId === 1 ? 2 : 1}`,
         {
           headers: { Authorization: `Bearer ${validToken}` },
         },
